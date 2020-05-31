@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserDao">
+   <resultMap id="base_map" type="com.model.User">
+       <result property="id" javaType="int" column="id" jdbcType="INTEGER" ></result>
+       <result property="userName" javaType="string" column="user_name" jdbcType="VARCHAR" ></result>
+       <result property="passWord" javaType="string" column="pass_word" jdbcType="VARCHAR" ></result>
+       <result property="openId" javaType="string" column="open_id" jdbcType="VARCHAR" ></result>
+       <result property="status" javaType="int" column="user_status" jdbcType="INTEGER" ></result>
+   </resultMap>
+
+    <select id="getUserByName" resultMap="base_map">
+        select *
+        from tb_user
+        where
+         user_name = #{name}
+    </select>
+
+    <select id="getUserById" resultMap="base_map">
+        select *
+        from tb_user
+        where
+         id = #{id}
+    </select>
+
+    <select id="getUserByOpenId" resultMap="base_map">
+        select *
+        from tb_user
+        where
+         open_id = #{openId}
+    </select>
+
+    <select id="getListUser" resultMap="base_map">
+        select *
+        from tb_user
+    </select>
+
+    <insert id="insertUser" parameterType="com.model.User" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into tb_user
+        (user_name,pass_word,open_id,user_status) values
+        (#{userName},#{passWord},#{openId},#{status})
+    </insert>
+
+    <insert id="updateUser" parameterType="com.model.User" >
+        update  tb_user set
+        user_name = #{userName},
+        pass_word = #{passWord},
+        open_id = #{openId},
+        user_status = #{status}
+        where id = #{id}
+    </insert>
+
+
+
+</mapper>
+
+

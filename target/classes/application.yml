@@ -1,0 +1,29 @@
+server:
+  port: 80
+
+logging:
+  level:
+    com.dao: DEBUG
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+#  type-aliases-package: com.jsu.pojo
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_ads?serverTimezone=UTC&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
+
+  thymeleaf:
+#    prefix: classpath:/templates
+#    suffix: .html
+    encoding: utf-8
+    check-template: true
+    cache: false
